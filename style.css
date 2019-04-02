@@ -1,0 +1,30 @@
+/* --------PROJECTO CARRO------- */
+*{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+canvas{
+    display:block;
+    border: 1px solid black;
+    /*max-height: calc(100vh - 1200px);
+    max-width: 95vw;*/
+    margin: auto;
+    background-image: url('./img/for_-01.jpg');
+    background-size: 100% 100%;
+    position: absolute;
+    left: auto;
+    top: auto;
+    
+}
+
+
+h1{
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    margin: 25px;
+}
+h1:hover{
+    color: blue;
+}
+
