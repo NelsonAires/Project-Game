@@ -3,17 +3,25 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    margin: 0;
+}
+
+
+
 canvas{
-    display:block;
+    display: block;
     border: 1px solid black;
     /*max-height: calc(100vh - 1200px);
     max-width: 95vw;*/
-    margin: auto;
-    background-image: url('./img/for_-01.jpg');
+    width: 90vw;
+    background-image: url('./img/Back_AF-01.jpg');
     background-size: 100% 100%;
-    position: absolute;
-    left: auto;
-    top: auto;
     
 }
 

@@ -8,14 +8,16 @@ const CANVAS_HEIGHT = canvas.height
 
 let frame = 0
 
-var car = new Image()
-car.src = './img/car1-01.png'
-
-let player1 = new Player(100,300,10,10, '#ffffff', ['w','a','s','d'])
+let circuit = new Circuit()
+let player2 = new Player(200,510, 0, 45,30, '#ffffff', ['z','x','c','v'])
+let player1 = new Player(200,545, 0, 45,30, '#ffffff', ['w','a','s','d'])
 let enemies = [
-  new Enemy(30,100,0,10,'white'),
-  new Enemy(30,200,2,10,'black'),
-  new Enemy(30,300,3,10,'grey'),
+  new Enemy(30,100,0,2,'#ffffff'),
+  new Enemy(30,200,2,2,'#ffffff'),
+  new Enemy(30,300,3,2,'#ffffff'),
+  new Enemy(30,100,4,2,'#ffffff'),
+  new Enemy(30,200,5,2,'#ffffff'),
+  new Enemy(30,300,6,2,'#ffffff'),
 ]
 
 function animation() {
@@ -30,8 +32,11 @@ function drawEverything() {
   // Clearing all the canvas
   ctx.clearRect(0,0,canvas.width, canvas.height)
 
+  circuit.draw(ctx)
+
   // Draw player1
-  player1.draw(ctx)
+  player1.draw(ctx, './img/PL2-01.png')
+  player2.draw(ctx, './img/car_mini-01.png')
 
   // Draw all enemies
   for (let i = 0; i < enemies.length; i++) {
@@ -43,6 +48,7 @@ function drawEverything() {
 function updateEverything() {
   frame++
   player1.update()
+  player2.update()
   for (let i = 0; i < enemies.length; i++) {
     enemies[i].update()
     if (checkCollision(player1, enemies[i])) {
@@ -54,7 +60,7 @@ function updateEverything() {
   if (frame % 100 === 0) {
     let x = 0
     let y = Math.floor(Math.random() * CANVAS_HEIGHT)
-    enemies.push(new Enemy(x,y,1,10,'black'))
+    enemies.push(new Enemy(x,y,1,3,'#ffffff'))
   } 
 }
 
@@ -65,49 +71,3 @@ function checkCollision(player, enemy) {
   return true
 }
 
-/*const canvas = document.querySelector('canvas')
-const ctx = canvas.getContext("2d")
-//constants
-const CANVAS_WIDTH = canvas.width
-const CANVAS_HEIGHT = canvas.height
-// const GRAVITY = 0.5 // Constante para a gravidade (definida em VY)
-
- let frame = 0 // the counter
- let player1 = new Player(0,0,'red', ['w','a','s','d'])//INSERT CAR HERE ------------
-// let scoreBalls = [ //SNOW MAYBE OR LEAFS ------------
-//     new ScoreBall()
-// ]
-
-let bg = new Background()
-
-function animation() {
-    updateEverything()
-    drawEverything(ctx)
-    window.requestAnimationFrame(animation)
-}
-animation()
-
-function drawEverything(ctx) {
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-  
-    //bg.draw(ctx)
-    player.draw(ctx)
-}
-   
-
-function updateEverything() {
-    frame++
-    player1.update()
-    // for (let i = 0; i < enemies.length; i++) {
-    //   enemies[i].update()
-    //   if (checkCollision(player1, enemies[i])) {
-    //     //
-    //     enemies.splice(i,1)
-    //   }
-    // }    
-}
-// function updateEverything(){
-//         bg.update()
-//     }
-
-*/

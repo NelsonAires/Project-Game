@@ -1,56 +1,103 @@
 class Player {
-    constructor(initialX, initialY, width, height, color, keys) {
+    constructor(initialX, initialY, initialAngle, width, height, color, keys) {
       this.x = initialX // Center of the car
       this.y = initialY // Center of the car
       this.width = width
       this.height = height
-      this.maxSpeed = 7
+      this.maxSpeed = 6
       this.speed = 0 //VELOCITY OF THE ITEM
       this.acceleration = 0.1
-      this.rotationSpeed = 0.08
+      this.rotationSpeed = 0.07
       this.color = color
-      this.angle = 1 * Math.PI / 4
+      this.angle = initialAngle
       this.isUp = false
       this.isLeft = false
       this.isDown = false
       this.isRight = false
-      this.image = new Image()
-      this.image.src = "./img/car1-01.png"
+      //this.image = new Image()
+      //this.image.src = src
   
       document.onkeydown = (event) => {
-        event.preventDefault()
         // If the user pressed up
         console.log(event)
         if (event.keyCode === 38) {
-          this.isUp = true
+          event.preventDefault()
+          player1.isUp = true
         }
         if (event.keyCode === 37) {
-          this.isLeft = true
+          event.preventDefault()
+          player1.isLeft = true
         }
         if (event.keyCode === 40) {
-          this.isDown = true
+          event.preventDefault()
+          player1.isDown = true
         }
         if (event.keyCode === 39) {
-          this.isRight = true
+          event.preventDefault()
+          player1.isRight = true
         }
+        if (event.keyCode === 87) {
+          event.preventDefault()
+          player2.isUp = true
+        }
+        if (event.keyCode === 65) {
+          event.preventDefault()
+          player2.isLeft = true
+        }
+        if (event.keyCode === 83) {
+          event.preventDefault()
+          player2.isDown = true
+        }
+        if (event.keyCode === 68) {
+          event.preventDefault()
+          player2.isRight = true
+        }
+
+
       }
+
+      
       // When the key is up, the movement is stopped
       document.onkeyup = (event) => {
         if (event.keyCode === 38) {
-          this.isUp = false
+          player1.isUp = false
         }
         if (event.keyCode === 37) {
-          this.isLeft = false
+          player1.isLeft = false
         }
         if (event.keyCode === 40) {
-          this.isDown = false
+          player1.isDown = false
         }
         if (event.keyCode === 39) {
-          this.isRight = false
+          player1.isRight = false
+        }
+        if (event.keyCode === 87) {
+          player2.isUp = false
+        }
+        if (event.keyCode === 65) {
+          player2.isLeft = false
+        }
+        if (event.keyCode === 83) {
+          player2.isDown = false
+        }
+        if (event.keyCode === 68) {
+          player2.isRight = false
         }
       }
+
+    }
+    // Return a number between 0 and 1, used to multiple the speed
+    // 0 means, the speed is set to 0
+    // 1 means, the speed is not changed
+    // 0.5 means, the speed is divided by 2
+    getSpeedFactor() {
+      if (circuit.getGridValueAtCoordinates(this.x, this.y) === 0)
+        return 0.8
+      else 
+        return 1
     }
     update() {
+      // Update the speed
       if (this.isUp) {
         this.speed += this.acceleration
         if (this.speed >this.maxSpeed) {
@@ -66,22 +113,35 @@ class Player {
       else {
         this.speed *= 0.9
       }
-      this.x  += this.speed * Math.cos(this.angle)
-      this.y  += this.speed * Math.sin(this.angle)
 
+      this.speed *= this.getSpeedFactor()
+
+      // Update x and y
+      this.x += this.speed * Math.cos(this.angle)
+      this.y += this.speed * Math.sin(this.angle)
+
+      // speed
+      // 5
+      // (5+0.1) * 0.8 = 4.08
+      // (4.08+0.1) * 0.8 = 3.33
+      // (3.33+0.1) * 0.8 = 2.74
+      // (2.74+0.1) * 0.8 = 2.27
+
+      // Update the angle
       if (this.isLeft) {
         this.angle -= this.rotationSpeed
       }
       if (this.isRight) {
         this.angle += this.rotationSpeed
       }
+
+      // Check for the limit inside the canvas
       if (this.x < 0) {
         this.x = 0
       }
       if (this.y < 0) {
         this.y = 0
       }
-      
       if (this.x > CANVAS_WIDTH) {
         this.x = CANVAS_WIDTH
       }
@@ -95,15 +155,17 @@ class Player {
         this.y = CANVAS_HEIGHT - this.side
       }
     }
-    draw(ctx) {
+    draw(ctx, src) {
       ctx.save()
       ctx.translate(this.x, this.y) // Move the coordinates system to the center of the car
       ctx.rotate(this.angle)
-      ctx.fillStyle = this.color
-      ctx.fillRect(-this.width/2, -this.height/2, this.width, this.height) //COMMENT PA tirar caixa
-      ctx.drawImage(car,-50,-25,80,40) // TODO: draw the image instead of fillRect
-      ctx.fillStyle = "black"
-      ctx.fillRect(0, 0, this.width/2,1)
+      // ctx.fillStyle = this.color
+      // ctx.fillRect(-this.width/2, -this.height/2, this.width, this.height) //COMMENT PA tirar caixa
+      // ctx.fillStyle = "black" // ORIENTATION LINE
+      // ctx.fillRect(0, 0, this.width/2,1)
+      let img = new Image()
+      img.src = src
+      ctx.drawImage(img,-this.width/2, -this.height/2, this.width, this.height) // TODO: draw the image instead of fillRect
       ctx.restore()
     }
     top() {
@@ -120,32 +182,4 @@ class Player {
     }
   }
 
-  /*
-  const playerMovementInterpolation = otherPlayers => {
-    for (let id in otherPlayers) {
-      let player = otherPlayers[id]
-      if (player.target_x !== undefined) {
-        // Interpolate the player's position
-        player.sprite.body.x += (player.target_x - player.sprite.body.x) * 0.30
-        player.sprite.body.y += (player.target_y - player.sprite.body.y) * 0.30
   
-        let angle = player.target_rotation
-        let direction = (angle - player.sprite.body.rotation) / (Math.PI * 2)
-        direction -= Math.round(direction)
-        direction *= Math.PI * 2
-        player.sprite.body.rotation += direction * 0.30
-  
-        // Interpolate the player's name position
-        player.playerName.x += (player.playerName.target_x - player.playerName.x) * 0.30
-        player.playerName.y += (player.playerName.target_y - player.playerName.y) * 0.30
-  
-        // Interpolate the player's speed text position
-        player.speedText.x += (player.speedText.target_x - player.speedText.x) * 0.30
-        player.speedText.y += (player.speedText.target_y - player.speedText.y) * 0.30
-  
-        player.updatePlayerStatusText('speed', player.speedText.x, player.speedText.y, player.speedText)
-      }
-    }
-  }
-  
-  export default playerMovementInterpolation*/
