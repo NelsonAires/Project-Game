@@ -9,19 +9,22 @@
     <title>Car</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="shortcut icon" href="..." type="image/x-icon">
-    <!-- <style> 
-        canvas {
-            border: 1px solid red
-        }
-    </style> -->
-
+    <!-- <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 
 </head>
-<body>
-    <!--  <h1>Car on the Spot</h1>-->
-    <h1>Vintage Trophy</h1>
-    <canvas width="1000" height="600"></canvas>
+    <body>
+        <div id="intro" >
+            <button id="startButton" onclick="start()"> <span>Start Race</span></button>
+            
+        </div>
 
+    <canvas width="1000" height="600"></canvas>
+    <audio id="soundGame" loop> 
+        <source src="./img/GameSound.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- <audio id ="music" src="./img/GameSound.mp3" loop ></audio> -->
     <script src="./circuit.js"></script>
     <script src="./enemy.js"></script>
     <script src="./player.js"></script>

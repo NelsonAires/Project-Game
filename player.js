@@ -19,6 +19,7 @@ class Player {
   
       document.onkeydown = (event) => {
         // If the user pressed up
+        //PLAYER_1 RED CAR
         console.log(event)
         if (event.keyCode === 38) {
           event.preventDefault()
@@ -36,6 +37,7 @@ class Player {
           event.preventDefault()
           player1.isRight = true
         }
+         //PLAYER_2 BLUE
         if (event.keyCode === 87) {
           event.preventDefault()
           player2.isUp = true
@@ -58,6 +60,7 @@ class Player {
 
       
       // When the key is up, the movement is stopped
+       //PLAYER_1
       document.onkeyup = (event) => {
         if (event.keyCode === 38) {
           player1.isUp = false
@@ -71,6 +74,7 @@ class Player {
         if (event.keyCode === 39) {
           player1.isRight = false
         }
+         //PLAYER_2
         if (event.keyCode === 87) {
           player2.isUp = false
         }
@@ -136,17 +140,17 @@ class Player {
       }
 
       // Check for the limit inside the canvas
-      if (this.x < 0) {
-        this.x = 0
+      if (this.x < this.width/2) {
+        this.x = this.width/2
       }
-      if (this.y < 0) {
-        this.y = 0
+      if (this.y < this.height/2) {
+        this.y = this.height/2
       }
-      if (this.x > CANVAS_WIDTH) {
-        this.x = CANVAS_WIDTH
+      if (this.x > CANVAS_WIDTH - this.width/2) {
+        this.x = CANVAS_WIDTH - this.width/2
       }
-      if (this.y > CANVAS_HEIGHT) {
-        this.y = CANVAS_HEIGHT
+      if (this.y > CANVAS_HEIGHT-this.height/2) {
+        this.y = CANVAS_HEIGHT-this.height/2
       }
       if (this.x + this.side > CANVAS_WIDTH) {
         this.x = CANVAS_WIDTH - this.side
