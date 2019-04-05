@@ -35,7 +35,7 @@ let enemies = [
   new Enemy(60,400,1,1,'#ffffff'),
 ]
 let winnerNb = null // Possible values: null (no one yet), 1 or 2
-let nbOfLaps = 0 //NR OF LAPS to atrb a Winner
+let nbOfLaps = 4 //NR OF LAPS to atrb a Winner
 
 function animation() {
   updateEverything()
@@ -96,12 +96,12 @@ function updateEverything() {
   if (!winnerNb && player1.getFloorLap() > nbOfLaps) {
     winnerNb = 1
   } else {
-    player1.lap++
+    // player1.lap++
   }
   if (!winnerNb && player2.getFloorLap() > nbOfLaps) {
     winnerNb = 2
   } else {
-  player2.lap++
+  // player2.lap++
 }
   // Generation of enemy every 100 frames
   if (frame % 100 === 0) {
@@ -133,7 +133,7 @@ function drawLaps() {
 
 function drawWinner() {
   ctx.save()
-  ctx.globalAlpha = 0.7
+  ctx.globalAlpha = 0.8
   ctx.fillStyle = "black"
   ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT)
   ctx.fillStyle ='#f9f9f9' //'#fff9fa'
