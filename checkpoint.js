@@ -5,7 +5,7 @@ class CheckPoint {
         this.width = 20
         this.height = 120
         this.type = type
-        this.nrOfLaps = 3 //Nr of laps
+        this.nrOfLaps = 4 //Nr of laps
         //this.winner = 3
     }
     draw(ctx) {

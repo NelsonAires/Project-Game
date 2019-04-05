@@ -16,6 +16,7 @@ class Player {
       this.lap = 0.5
       this.img = new Image()
       this.img.src = src
+      this.numOfLaps = 0
       
   
       document.onkeydown = (event) => {
