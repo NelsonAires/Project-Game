@@ -6,17 +6,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Car</title>
+    <title>Vintage Trophy</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="shortcut icon" href="..." type="image/x-icon">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet"> -->
+    <link rel="shortcut icon" href="./img/FavMini.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Iceberg|Patua+One" rel="stylesheet">
 
 </head>
     <body>
+
+        <audio id="introSound" autoplay>
+            <source src="./img/IntroSound.mp3" type="audio/mpeg">
+        </audio>
+
         <div id="intro" >
-            <button id="startButton" onclick="start()"> <span>Start Race</span></button>
-            
+            <button id="startButton" onclick="start()"> <span>Start Race</span></button>     
         </div>
 
     <canvas width="1000" height="600"></canvas>
@@ -24,18 +29,12 @@
         <source src="./img/GameSound.mp3" type="audio/mpeg">
     </audio>
     
-    <!-- <audio id ="music" src="./img/GameSound.mp3" loop ></audio> -->
     <script src="./circuit.js"></script>
     <script src="./enemy.js"></script>
+    <script src="./checkpoint.js"></script>
     <script src="./player.js"></script>
     <script src="./main.js"></script>
     
-    <!-- <script src="js/Background.js"></script>
-    <script src="js/Player.js"></script>
-    <script src="js/ScoreBall.js"></script> -->
-    <!--- <script src="./background.js"></script> -->
-
- 
     
     </body>
 </html>

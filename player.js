@@ -1,5 +1,5 @@
 class Player {
-    constructor(initialX, initialY, initialAngle, width, height, color, keys) {
+    constructor(initialX, initialY, initialAngle, width, height, src) {
       this.x = initialX // Center of the car
       this.y = initialY // Center of the car
       this.width = width
@@ -8,19 +8,19 @@ class Player {
       this.speed = 0 //VELOCITY OF THE ITEM
       this.acceleration = 0.1
       this.rotationSpeed = 0.07
-      this.color = color
       this.angle = initialAngle
       this.isUp = false
       this.isLeft = false
       this.isDown = false
       this.isRight = false
-      //this.image = new Image()
-      //this.image.src = src
+      this.lap = 0.5
+      this.img = new Image()
+      this.img.src = src
+      
   
       document.onkeydown = (event) => {
         // If the user pressed up
         //PLAYER_1 RED CAR
-        console.log(event)
         if (event.keyCode === 38) {
           event.preventDefault()
           player1.isUp = true
@@ -54,12 +54,8 @@ class Player {
           event.preventDefault()
           player2.isRight = true
         }
-
-
       }
-
-      
-      // When the key is up, the movement is stopped
+       // When the key is up, the movement is stopped
        //PLAYER_1
       document.onkeyup = (event) => {
         if (event.keyCode === 38) {
@@ -167,9 +163,7 @@ class Player {
       // ctx.fillRect(-this.width/2, -this.height/2, this.width, this.height) //COMMENT PA tirar caixa
       // ctx.fillStyle = "black" // ORIENTATION LINE
       // ctx.fillRect(0, 0, this.width/2,1)
-      let img = new Image()
-      img.src = src
-      ctx.drawImage(img,-this.width/2, -this.height/2, this.width, this.height) // TODO: draw the image instead of fillRect
+      ctx.drawImage(this.img,-this.width/2, -this.height/2, this.width, this.height) // TODO: draw the image instead of fillRect
       ctx.restore()
     }
     top() {
@@ -183,6 +177,9 @@ class Player {
     }
     right() {
       return this.x + this.side
+    }
+    getFloorLap() {
+      return Math.floor(this.lap)
     }
   }
 

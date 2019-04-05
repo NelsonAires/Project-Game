@@ -4,7 +4,7 @@ class Enemy {
       this.y = initialY
       this.speed = speed
       this.side = side
-      this.color = color
+      this.color = '#f9f9f9'
     }
     update() {
       if (this.x > CANVAS_WIDTH-this.side || this.x < 0) {

@@ -10,17 +10,16 @@ body {
     align-items: center;
     min-height: 50vh;
     height: 100vh;
-    margin: 50;
+    margin: 0;
     background-image: url('./img/ice_1.jpg');
     background-size: 100% 100%;
-    background-repeat: no-repeat;
-    
+    background-repeat: no-repeat;    
 }
 
 canvas{
     display: block;
     width: 80vw;
-    background-image: url('./img/AF_BACK-01.png');
+    background-image: url('./img/RoadAF.png');
     background-size: 100% 100%;
     
 }
@@ -36,7 +35,7 @@ h1:hover{
 } */
 
 #intro {
-    background-image: url('./img/Intro_AF-01.jpg');
+    background-image: url('./img/IntroAF.jpg');
     position: absolute;
     top: 0;
     width: 100%;
@@ -52,23 +51,23 @@ h1:hover{
 }
 
 #intro button {
-    margin-top: 40vh;
-    margin-left: 5vh;
+    margin-top: 72vh;
+    margin-left: -16vh;
     padding: 15px 25px;
-    /*font-family:'Patua One', cursive;*/
-    font-family:'VT323', monospace;
+    font-family:'Patua One', cursive;
+    /*font-family:'VT323', monospace;*/
     font-size: 28px;
     text-align: center;
     outline: none;
-    color: rgba(255, 255, 255, 0.66);
-    background-color: rgba(92, 92, 92, 0.502);
+    color: rgba(19, 1, 1, 0.927);
+    background-color: rgba(255, 255, 255, 0.564);
     border: none;
     border-radius: 10px;
 }
   
 #startButton:hover{
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.673);
-    background-color: rgba(255, 255, 255, 0.365);
+    color: rgba(247, 247, 247, 0.783);
+    background-color: rgba(181, 0, 0, 0.776);
     box-shadow: 2px 2px;
 }
