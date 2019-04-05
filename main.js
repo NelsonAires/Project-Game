@@ -35,7 +35,7 @@ let enemies = [
   new Enemy(60,400,1,1,'#ffffff'),
 ]
 let winnerNb = null // Possible values: null (no one yet), 1 or 2
-let nbOfLaps = 1 //NR OF LAPS to atrb a Winner
+let nbOfLaps = 5 //NR OF LAPS to atrb a Winner
 
 function animation() {
   updateEverything()
